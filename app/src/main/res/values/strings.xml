@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LibraryManagment</string>
+    <string name="title_activity_select_role">SelectRoleActivity</string>
+    <string name="title_activity_member_login">MemberLoginActivity</string>
+    <string name="title_activity_admin_login">AdminLoginActivity</string>
+    <string name="title_activity_member_dash_board">MemberDashBoardActivity</string>
+</resources>
