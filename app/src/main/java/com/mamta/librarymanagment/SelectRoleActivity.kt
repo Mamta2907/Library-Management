@@ -35,9 +35,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mamta.librarymanagment.ui.theme.AdminLogin
+import com.mamta.librarymanagment.ui.theme.AdminLoginScreen
 import com.mamta.librarymanagment.ui.theme.LibraryManagmentTheme
+import com.mamta.librarymanagment.ui.theme.MemberLogin
 
 class SelectRoleActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,13 +53,27 @@ class SelectRoleActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 //MainUI()
                 val navController = rememberNavController()
-                Scaffold(topBar = { RoleToolBar() }) { it ->
+                Scaffold() { it ->
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(it)
                     ) {
-                        SelectRole()
+
+                        NavHost(navController = navController, startDestination = "roleSelect") {
+
+                            composable("roleSelect") {
+                                SelectRole(navController)
+                            }
+
+                            composable("adminRole") {
+                                AdminLogin()
+                            }
+                            composable("memberRole") {
+                                MemberLogin()
+                            }
+                        }
+
                     }
 
                 }
@@ -77,21 +97,24 @@ fun RoleToolBar() {
 }
 
 @Composable
-fun SelectRole() {
+fun SelectRole(navController: NavController) {
     val context = LocalContext.current
-
+    RoleToolBar()
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
                 .padding(8.dp)
                 .clickable {
-                    context.startActivity(Intent(context, AdminLoginActivity::class.java))
+                    //context.startActivity(Intent(context, AdminLoginActivity::class.java))
+                    navController.navigate("adminRole")
                 },
             colors = CardDefaults.cardColors(Color.White),
             elevation = CardDefaults.cardElevation(10.dp),
@@ -127,7 +150,8 @@ fun SelectRole() {
                 .padding(8.dp)
                 .padding(8.dp)
                 .clickable {
-                    context.startActivity(Intent(context, MemberLoginActivity::class.java))
+                    //context.startActivity(Intent(context, MemberLoginActivity::class.java))
+                    navController.navigate("memberRole")
                 },
             colors = CardDefaults.cardColors(Color.White),
             elevation = CardDefaults.cardElevation(10.dp),

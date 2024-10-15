@@ -17,16 +17,7 @@
             android:exported="false"
             android:label="@string/title_activity_member_dash_board"
             android:theme="@style/Theme.LibraryManagment" />
-        <activity
-            android:name=".AdminLoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_admin_login"
-            android:theme="@style/Theme.LibraryManagment" />
-        <activity
-            android:name=".MemberLoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_member_login"
-            android:theme="@style/Theme.LibraryManagment" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false"
